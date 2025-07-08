@@ -1,2 +1,271 @@
-# sitiosayu
-invitacion 
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invitación Especial Scrollable</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html,
+        body {
+            height: 100%;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+        
+        .contenedor-principal {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+        }
+        
+        .seccion {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .ventana {
+            background: linear-gradient(135deg, #a2d4f2, #0072ff);
+            color: white;
+        }
+        
+        .pregunta {
+            background: linear-gradient(135deg, #6ee7b7, #3b82f6);
+            color: white;
+        }
+        
+        .detalle-viaje {
+            background: linear-gradient(to bottom, #87cefa, #b0e0e6);
+            color: #000;
+            position: relative;
+        }
+        
+        .btn {
+            padding: 15px 35px;
+            margin: 15px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            color: white;
+            background-color: #ff7f50;
+            animation: latido 1.5s infinite;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #ff5722;
+        }
+        
+        .btn-si {
+            background: #28a745;
+        }
+        
+        .btn-no {
+            background: #dc3545;
+        }
+        
+        @keyframes latido {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        .palmera {
+            position: absolute;
+            top: 20px;
+            width: 100px;
+            height: 100px;
+            opacity: 0.8;
+            animation: balanceo 4s infinite ease-in-out;
+        }
+        
+        .palmera.izquierda {
+            left: 10px;
+        }
+        
+        .palmera.derecha {
+            right: 10px;
+            transform: scaleX(-1);
+        }
+        
+        @keyframes balanceo {
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(5deg);
+            }
+        }
+        
+        .imagenes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px;
+        }
+        
+        .imagenes img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+        
+        .imagenes img:hover {
+            transform: scale(1.05);
+        }
+        
+        .sobre {
+            width: 100px;
+            height: 70px;
+            background: #fff;
+            position: relative;
+            margin-top: 30px;
+            cursor: pointer;
+            border: 2px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s;
+            z-index: 1;
+        }
+        
+        .sobre.abierto {
+            transform: scale(1.5);
+        }
+        
+        .hoja {
+            width: 250px;
+            height: 160px;
+            background: #fff;
+            position: absolute;
+            top: -180px;
+            left: -70px;
+            border: 1px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.1em;
+            padding: 15px;
+            text-align: center;
+            color: black;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+            display: none;
+        }
+        
+        .seccion h1 {
+            margin-top: 20px;
+            font-size: 2em;
+        }
+        
+        .seccion p {
+            font-size: 1.2em;
+            max-width: 700px;
+            margin: 15px auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <audio id="musicaFondo" autoplay loop>
+  <source src="Bundle Of Joy - Inside Out Main Theme [Piano Tutorial] (Synthesia).mp3" type="audio/mpeg">
+</audio>
+
+    <div class="contenedor-principal">
+
+        <!-- Sección 1 -->
+        <div class="seccion ventana" id="ventana">
+            <p>Hola 🌟 estuve pensando mucho y sé que has tenido unos días muy difíciles 😔 y quiero hacer algo para alegrarte 😊. Siento feo que no te vas a poder ir de vacaciones 🏖️ y te mereces unas vacaciones porque eres una persona que siempre se esfuerza
+                mucho en todo 💪✨ y necesitas descansar 😴. Por eso plane esto para ti 📝. Tal vez no son vacaciones como tal pero quiero hacerte pasar un buen rato 🎉, que te diviertas y disfrutes tus "vacaciones" 💖.</p>
+            <button class="btn" onclick="scrollASeccion(1)">Continuar</button>
+        </div>
+
+        <!-- Sección 2 -->
+        <div class="seccion pregunta" id="pregunta">
+            <h1>¿Quieres ir de vacaciones (por un día, unas horas)? 🌴☀️</h1>
+            <button class="btn btn-si" onclick="scrollASeccion(2)">¡Claro que sí!</button>
+            <button class="btn btn-no" onclick="alert('Hasta la próxima 😢')">No puedo :(</button>
+        </div>
+
+        <!-- Sección 3 -->
+        <div class="seccion detalle-viaje" id="detalle">
+            <img class="palmera izquierda" src="imagenes/11.png" alt="palmera">
+            <img class="palmera derecha" src="imagenes/111.png" alt="palmera">
+
+            <h1>Detalles del viaje</h1>
+            <p>Descripción del viaje: Un día lleno de diversión, relajación y sorpresas pensado solo para ti.</p>
+            <p>Se que no te dejan salir, pero pensé en una forma de que puedas. Y quiero hacer que ese día sea mágico para ti :)</p>
+
+            <div class="imagenes">
+                <img src="imagenes/japi.jpg" alt="Imagen 1">
+                <img src="imagenes/weri.jpg" alt="Imagen 2">
+            </div>
+
+            <p>Espero sepas a dónde te quiero llevar 💕</p>
+
+            <div class="sobre" id="sobre" onclick="abrirSobre()">
+                📩 Abrir sobre
+                <div class="hoja" id="hoja">¡Eres increíble! Te mereces una experiencia bonita ❤️ y no es algo muy grande pero es un detalle que te queria hacer 💕 </div>
+            </div>
+            <p>para mas informacion por msj me dices </p>
+        </div>
+
+    </div>
+
+    <script>
+        // Reproducir música si está pausada (en móviles)
+        window.addEventListener('click', () => {
+            const musica = document.getElementById('musicaFondo');
+            if (musica.paused) {
+                musica.play().catch(() => console.warn("Autoplay bloqueado"));
+            }
+        });
+
+        function abrirSobre() {
+            const hoja = document.getElementById('hoja');
+            const sobre = document.getElementById('sobre');
+            if (hoja.style.display === 'block') {
+                hoja.style.display = 'none';
+                sobre.classList.remove('abierto');
+            } else {
+                hoja.style.display = 'block';
+                sobre.classList.add('abierto');
+            }
+        }
+
+        function scrollASeccion(numero) {
+            const secciones = document.querySelectorAll('.seccion');
+            secciones[numero].scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    </script>
+
+</body>
+
+</html>
